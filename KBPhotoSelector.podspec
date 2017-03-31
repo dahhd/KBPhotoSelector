@@ -10,7 +10,7 @@
 Pod::Spec.new do |s|
 
 s.name         = "KBPhotoSelector"
-s.version      = "v0.0.1"
+s.version      = "0.0.1"
 s.summary      = "KBPhotoSelector."
 s.author       = {"Bofearless" => "Bofearless@gmail.com"}
 s.description  = <<-DESC
@@ -22,8 +22,8 @@ s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 s.platform     = :ios, "8.0"
 s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", :tag => s.version.to_s }
 
-s.source_files  = "KBPhotoSelector/KBPhotoSelector/**/*.{h,m}"
-s.requires_arc = true
+s.source_files  = "KBPhotoSelector","KBPhotoSelector/**/*.{h,m}"
+s.requires_arc  = true
 
 s.framework  = "UIKit","Photos"
 
