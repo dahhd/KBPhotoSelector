@@ -23,6 +23,9 @@ s.platform     = :ios, "8.0"
 s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", :tag => s.version.to_s }
 
 s.source_files  = "KBPhotoSelector","KBPhotoSelector/**/*"
+
+s.resource = "KBPhotoSelector", "KBPhotoSelector/**/*.xib"
+
 s.requires_arc  = true
 
 s.framework  = "UIKit","Photos"
