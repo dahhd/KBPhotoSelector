@@ -1,4 +1,4 @@
-# 顶部log</br>
+# 顶部</br>
 ![shields.io](https://img.shields.io/teamcity/codebetter/bt428.svg)  ![Mozilla Add-on](https://img.shields.io/amo/d/dustman.svg?style=flat-square)  ![Yii2](https://img.shields.io/badge/Powered_by-Photos_Framework-green.svg?style=flat)  ![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg?style=flat-square)  ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)
 
 ## KBPhotoSelector</br>
@@ -14,9 +14,8 @@ KBPhotoSelector是一个iOS系统的照片选择、浏览、删除管理器，�
 ***
 ### 安装</br>
 * 支持Cocopods
-* pod 'KBPhotoBrowser' ~> '0.0.1'
-* 111
-* 222
+* pod 'KBPhotoSelector' ~> '0.0.1'
+* pod update
 
 
 
@@ -44,7 +43,7 @@ _photoActionSheet = [[KBPhotoActionSheet alloc]init];
 
 
 ### 依赖</br>
-Photos Framework
+PhotosKit Framework
 </br>
 
 
