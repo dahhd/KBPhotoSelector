@@ -24,7 +24,9 @@ s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", 
 
 s.source_files  = "KBPhotoSelector","KBPhotoSelector/**/*"
 
+
 s.resource = "KBPhotoSelector", "KBPhotoSelector/**/*.xib"
+
 
 s.requires_arc  = true
 
