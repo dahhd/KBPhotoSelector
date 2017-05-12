@@ -49,7 +49,7 @@ PhotosKit Framework
 
 
 ### 问题反馈&&交流讨论❓</br>
-###### [吐槽大会，吐到你笑](blogbo.org)
+###### [吐槽大会，吐到你笑](http://blogbo.org)
 
 
 
