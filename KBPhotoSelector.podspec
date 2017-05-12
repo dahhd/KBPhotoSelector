@@ -1,36 +1,29 @@
-#
-#  Be sure to run `pod spec lint KBPhotoSelector.podspec' to ensure this is a
-#  valid spec and to remove all comments including this before submitting the spec.
-#
-#  To learn more about Podspec attributes see http://docs.cocoapods.org/specification.html
-#  To see working Podspecs in the CocoaPods repo see https://github.com/CocoaPods/Specs/
-#
-
 
 Pod::Spec.new do |s|
 
 s.name         = "KBPhotoSelector"
 s.version      = "0.0.2"
-s.summary      = "KBPhotoSelector."
+s.summary      = "KBPhotoSelector for iOS."
 s.author       = {"Bofearless" => "Bofearless@gmail.com"}
 s.description  = <<-DESC
-This is KBPhotoSelector, a photos selected repository.
-DESC
+                   This is KBPhotoSelector, a photos selected repository.
+                  DESC
+
 
 s.homepage     = "https://github.com/Bofearless/KBPhotoSelector.git"
 s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
 s.platform     = :ios, "8.0"
-s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", :tag => s.version.to_s }
+s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", :tag => "#{s.version}" }
 
-s.source_files  = "KBPhotoSelector","KBPhotoSelector/**/*"
-
-
-s.resource = "KBPhotoSelector", "KBPhotoSelector/**/*.xib"
+s.source_files  = "KBPhotoSelector/**/*.{h,m}"
 
 
+s.resource = "KBPhotoSelector/**/*.{xib}"
 s.requires_arc  = true
 
-s.framework  = "UIKit","Photos"
+s.framework  = "Foundation", "UIKit", "Photos"
+s.dependency "Masonry"
 
+# s.version.to_s
 
 end

@@ -15,7 +15,8 @@
 #import "KBPhotoBrowserDefine.h"
 
 #import <Photos/Photos.h>
-#import "Masonry.h"
+#import <Masonry/Masonry.h>
+
 // 点击Cell上按钮时，按钮闪动动画
 static inline CAKeyframeAnimation * GetBtnStatusChangedAnimation() {
     CAKeyframeAnimation *animate = [CAKeyframeAnimation animationWithKeyPath:@"transform"];
