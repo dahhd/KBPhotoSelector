@@ -16,7 +16,7 @@ s.platform     = :ios, "8.0"
 s.source       = { :git => "https://github.com/Bofearless/KBPhotoSelector.git", :tag => "#{s.version}" }
 
 s.source_files  = "KBPhotoSelector/**/*.{h,m}"
-s.resource = "KBPhotoSelector/**/*.{png}"
+s.resource = "KBPhotoSelector/KBPhoto.bundle"
 
 s.requires_arc  = true
 
