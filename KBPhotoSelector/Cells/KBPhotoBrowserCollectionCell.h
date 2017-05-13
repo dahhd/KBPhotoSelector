@@ -10,7 +10,7 @@
 
 @interface KBPhotoBrowserCollectionCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UIButton *btnSelected;
+@property (strong, nonatomic) UIImageView *imageView;
+@property (strong, nonatomic) UIButton *btnSelected;
 
 @end

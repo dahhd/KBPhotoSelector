@@ -13,6 +13,6 @@
 @interface KBPhotoBigImageCollectionCell : UICollectionViewCell
 
 @property (nonatomic, strong) PHAsset *asset;
-@property (nonatomic, copy)   void (^singleTapCallBack)();
+@property (nonatomic, copy) void (^singleTapCallBack)();
 
 @end

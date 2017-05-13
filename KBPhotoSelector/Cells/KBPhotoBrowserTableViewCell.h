@@ -9,8 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface KBPhotoBrowserTableViewCell : UITableViewCell
-@property (weak, nonatomic) IBOutlet UIImageView *headerImage;
-@property (weak, nonatomic) IBOutlet UILabel *title;
-@property (weak, nonatomic) IBOutlet UILabel *titleCount;
+@property (strong, nonatomic) UIImageView *headerImage;
+@property (strong, nonatomic) UILabel *title;
+@property (strong, nonatomic) UILabel *titleCount;
 
 @end

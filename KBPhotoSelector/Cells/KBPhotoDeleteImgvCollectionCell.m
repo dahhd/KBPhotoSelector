@@ -18,13 +18,11 @@
 
 @implementation KBPhotoDeleteImgvCollectionCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-}
 
 
 - (instancetype)initWithFrame:(CGRect)frame {
     if (self = [super initWithFrame:frame]) {
+        
         [self.scrollView addSubview:self.imageView];
         [self addSubview:self.scrollView];
     }

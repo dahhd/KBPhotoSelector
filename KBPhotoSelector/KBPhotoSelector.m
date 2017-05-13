@@ -15,6 +15,7 @@
 #import "KBPhotoBrowserTableController.h"
 #import "KBPhotoBrowserBigImageController.h"
 
+#import <Masonry/Masonry.h>
 #import <Photos/Photos.h>
 #import <objc/runtime.h>
 
@@ -43,12 +44,14 @@ typedef void (^handler)(NSArray<UIImage*> *selectPhotos, NSArray<KBSelectPhotoMo
 
 
 - (instancetype)init {
-    self = [[[NSBundle mainBundle]loadNibNamed:@"KBPhotoSelector" owner:self options:nil]lastObject];
-    if (self) {
+    if (self = [super init]) {
+        self.backgroundColor = [UIColor lightGrayColor];
         self.frame = CGRectMake(0, 0, 160,160);
         self.maxSelectCount = 9; //最大支持照片选择数量默认9张，如有需要，可自行更改
         self.arrayDataSource = [NSMutableArray array];
         self.arraySelectPhotos = [NSMutableArray array];
+        
+        [self loadCustomViews];
         
         //如果未获得相机、相册访问权限，监听权限变化
         if (![self judgeIsHavePhotoAblumAuthority]) {
@@ -57,6 +60,50 @@ typedef void (^handler)(NSArray<UIImage*> *selectPhotos, NSArray<KBSelectPhotoMo
     }
     return self;
 }
+
+
+
+- (void)loadCustomViews {
+    UIButton *cameraBtn = [UIButton new];
+    cameraBtn.backgroundColor = [UIColor whiteColor];
+    [cameraBtn setTitle:@"拍照" forState:UIControlStateNormal];
+    [cameraBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [cameraBtn addTarget:self action:@selector(btnCamera_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *albumBtn = [UIButton new];
+    albumBtn.backgroundColor = [UIColor whiteColor];
+    [albumBtn setTitle:@"从手机相册选择" forState:UIControlStateNormal];
+    [albumBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [albumBtn addTarget:self action:@selector(btnPhotoLibrary_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIButton *cancelBtn = [UIButton new];
+    cancelBtn.backgroundColor = [UIColor whiteColor];
+    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [cancelBtn addTarget:self action:@selector(btnCancel_Click:) forControlEvents:UIControlEventTouchUpInside];
+    
+    [self addSubview:cameraBtn];
+    [self addSubview:albumBtn];
+    [self addSubview:cancelBtn];
+    
+    [cameraBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.left.right.equalTo(self);
+        make.height.equalTo(@49);
+    }];
+    
+    [albumBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(cameraBtn.mas_bottom).offset(1);
+        make.left.right.equalTo(self);
+    }];
+    
+    [cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.bottom.left.right.equalTo(self);
+        make.height.equalTo(@49);
+    }];
+}
+
+
+
 
 
 
@@ -118,7 +165,7 @@ static char RelatedKey;
 
 
 
-- (IBAction)btnCancel_Click:(id)sender {
+- (void)btnCancel_Click:(id)sender {
     [self.arraySelectPhotos removeAllObjects];
     if (self.canceBlock) {
         self.canceBlock();
@@ -127,7 +174,7 @@ static char RelatedKey;
 
 
 
-- (IBAction)btnCamera_Click:(id)sender {
+- (void)btnCamera_Click:(id)sender {
     NSLog(@"--拍照--");
     if (![self judgeIsHaveCameraAuthority]) {
         [self noAuthorizationStatusDenied];
@@ -148,7 +195,7 @@ static char RelatedKey;
 
 
 
-- (IBAction)btnPhotoLibrary_Click:(id)sender {
+- (void)btnPhotoLibrary_Click:(id)sender {
     NSLog(@"--从相册选择--");
     if (![self judgeIsHavePhotoAblumAuthority]) {
         [self noAuthorizationStatusDenied];

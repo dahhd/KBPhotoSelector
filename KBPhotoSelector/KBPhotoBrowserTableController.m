@@ -118,7 +118,7 @@
     KBPhotoBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KBPhotoBrowserTableViewCell"];
     
     if (!cell) {
-        cell = [[[NSBundle mainBundle] loadNibNamed:@"KBPhotoBrowserTableViewCell" owner:self options:nil] lastObject];
+        cell = [[KBPhotoBrowserTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"KBPhotoBrowserTableViewCell"];
     }
     
     KBPhotoAlbumList *ablumList= _arrayDataSources[indexPath.row];

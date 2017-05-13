@@ -291,7 +291,7 @@ static inline CAKeyframeAnimation * GetBtnStatusChangedAnimation() {
         layout.sectionInset = UIEdgeInsetsMake(3, 0, 3, 0);
         
         _collectionView.backgroundColor = [UIColor lightGrayColor];
-        [_collectionView registerNib:[UINib nibWithNibName:@"KBPhotoBrowserCollectionCell" bundle:nil] forCellWithReuseIdentifier:@"KBPhotoBrowserCollectionCell"];
+        [_collectionView registerClass:[KBPhotoBrowserCollectionCell class] forCellWithReuseIdentifier:@"KBPhotoBrowserCollectionCell"];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
     }

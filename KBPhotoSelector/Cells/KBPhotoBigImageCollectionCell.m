@@ -9,7 +9,6 @@
 #import "KBPhotoBigImageCollectionCell.h"
 #import "KBPhotoBrowserTool.h"
 #import "KBPhotoBrowserDefine.h"
-
 #import <Photos/Photos.h>
 
 @interface KBPhotoBigImageCollectionCell()<UIScrollViewDelegate>
@@ -23,13 +22,9 @@
 
 @implementation KBPhotoBigImageCollectionCell
 
-- (void)awakeFromNib {
-    [super awakeFromNib];
-    
-}
-
 - (instancetype)initWithFrame:(CGRect)frame {
-    if (self == [super initWithFrame:frame]) {
+    if (self = [super initWithFrame:frame]) {
+     
         [self addSubview:self.scrollView];
         [self.scrollView addSubview:self.containerView];
         [self.containerView addSubview:self.imageView];
