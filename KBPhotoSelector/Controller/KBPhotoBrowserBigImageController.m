@@ -72,19 +72,22 @@ static inline CAKeyframeAnimation * GetBtnStatusChangedAnimation() {
 
 
 
-
 - (void)configMyCustomView {
+    
+    NSBundle *firstBundle = [NSBundle bundleForClass:self.classForCoder];
+    
+    UIImage *navBackImg = [UIImage imageNamed:@"kb_nav_BackBtn" inBundle:firstBundle compatibleWithTraitCollection:nil];
+    
+    UIImage *btn_selected_img = [UIImage imageNamed:@"kb_btn_selected" inBundle:firstBundle compatibleWithTraitCollection:nil];
+    UIImage *btn_unselected_img = [UIImage imageNamed:@"kb_btn_unselected" inBundle:firstBundle compatibleWithTraitCollection:nil];
+    
     //initNavgationBar
     _navRightBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _navRightBtn.frame = CGRectMake(0, 0, 25, 25);
-    [_navRightBtn setBackgroundImage:[UIImage imageNamed:@"btn_unselected"] forState:UIControlStateNormal];
-    [_navRightBtn setBackgroundImage:[UIImage imageNamed:@"choose_selected"] forState:UIControlStateSelected];
+    [_navRightBtn setBackgroundImage:btn_unselected_img forState:UIControlStateNormal];
+    [_navRightBtn setBackgroundImage:btn_selected_img forState:UIControlStateSelected];
     [_navRightBtn addTarget:self action:@selector(navRightBtn_Click:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_navRightBtn];
-    
-    
-    //overr backBtn
-    UIImage *navBackImg = [UIImage imageNamed:@"navBackBtn"];
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[navBackImg imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:self action:@selector(btnBack_Click)];
     

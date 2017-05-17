@@ -118,7 +118,8 @@
     KBPhotoBrowserTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KBPhotoBrowserTableViewCell"];
     
     if (!cell) {
-        cell = [[KBPhotoBrowserTableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:@"KBPhotoBrowserTableViewCell"];
+        cell = [[KBPhotoBrowserTableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"KBPhotoBrowserTableViewCell"];
+        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     }
     
     KBPhotoAlbumList *ablumList= _arrayDataSources[indexPath.row];

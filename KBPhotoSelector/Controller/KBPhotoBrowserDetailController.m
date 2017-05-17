@@ -313,6 +313,7 @@ static inline CAKeyframeAnimation * GetBtnStatusChangedAnimation() {
 - (UIButton *)btnDone {
     if (!_btnDone) {
         _btnDone = [[UIButton alloc]init];
+        _btnDone.layer.cornerRadius = 3.0f;
         _btnDone.backgroundColor = [UIColor grayColor];
         NSString *btnDoneTitle = [NSString stringWithFormat:@"确认(0/%ld)",(long)_arrayDataSources.count];
         [_btnDone setTitle:btnDoneTitle forState:UIControlStateNormal];

@@ -51,8 +51,14 @@
 - (UIButton *)btnSelected {
     if (!_btnSelected) {
         _btnSelected = [UIButton buttonWithType:UIButtonTypeCustom];
-        [_btnSelected setImage:[UIImage imageNamed:@"btn_unselected"] forState:UIControlStateNormal];
-        [_btnSelected setImage:[UIImage imageNamed:@"choose_selected"] forState:UIControlStateSelected];
+        
+        NSBundle *firstBundle = [NSBundle bundleForClass:self.classForCoder];
+        
+        UIImage *btn_selected_img = [UIImage imageNamed:@"kb_btn_selected" inBundle:firstBundle compatibleWithTraitCollection:nil];
+        UIImage *btn_unselected_img = [UIImage imageNamed:@"kb_btn_unselected" inBundle:firstBundle compatibleWithTraitCollection:nil];
+        
+        [_btnSelected setImage:btn_unselected_img forState:UIControlStateNormal];
+        [_btnSelected setImage:btn_selected_img forState:UIControlStateSelected];
     }
     return _btnSelected;
 }

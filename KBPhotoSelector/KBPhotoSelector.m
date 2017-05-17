@@ -45,7 +45,7 @@ typedef void (^handler)(NSArray<UIImage*> *selectPhotos, NSArray<KBSelectPhotoMo
 
 - (instancetype)init {
     if (self = [super init]) {
-        self.backgroundColor = [UIColor lightGrayColor];
+        self.backgroundColor = [UIColor colorWithRed:223/255.f green:223/255.f blue:223/255.f alpha:1];
         self.frame = CGRectMake(0, 0, 160,160);
         self.maxSelectCount = 9; //最大支持照片选择数量默认9张，如有需要，可自行更改
         self.arrayDataSource = [NSMutableArray array];
@@ -67,19 +67,19 @@ typedef void (^handler)(NSArray<UIImage*> *selectPhotos, NSArray<KBSelectPhotoMo
     UIButton *cameraBtn = [UIButton new];
     cameraBtn.backgroundColor = [UIColor whiteColor];
     [cameraBtn setTitle:@"拍照" forState:UIControlStateNormal];
-    [cameraBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [cameraBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [cameraBtn addTarget:self action:@selector(btnCamera_Click:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *albumBtn = [UIButton new];
     albumBtn.backgroundColor = [UIColor whiteColor];
     [albumBtn setTitle:@"从手机相册选择" forState:UIControlStateNormal];
-    [albumBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [albumBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [albumBtn addTarget:self action:@selector(btnPhotoLibrary_Click:) forControlEvents:UIControlEventTouchUpInside];
     
     UIButton *cancelBtn = [UIButton new];
     cancelBtn.backgroundColor = [UIColor whiteColor];
     [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+    [cancelBtn setTitleColor:[UIColor grayColor] forState:UIControlStateNormal];
     [cancelBtn addTarget:self action:@selector(btnCancel_Click:) forControlEvents:UIControlEventTouchUpInside];
     
     [self addSubview:cameraBtn];
