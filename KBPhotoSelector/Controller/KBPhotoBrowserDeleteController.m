@@ -11,7 +11,7 @@
 #import "KBPhotoBrowserDefine.h"
 
 @interface KBPhotoBrowserDeleteController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
-
+    
 {
     UIButton *_navDeleteBtn;
     UICollectionView *_curCollectionView;
@@ -19,26 +19,34 @@
     NSInteger _currentPage;
     NSMutableArray<UIImage*> *_curImagesDataSource;
 }
-
+    
 @end
 
 @implementation KBPhotoBrowserDeleteController
-
-
+    
+    
 - (instancetype)init {
     if (self = [super init]) {
         _curImagesDataSource = [NSMutableArray array];
     }
     return self;
 }
-
+    
+    
+    
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    [_curCollectionView setContentOffset:CGPointMake(self.currentIndex*(kWidth+kItemMargin), 0)];
+}
+    
+    
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self configCurrentViews];
 }
-
-
-
+    
+    
+    
 - (void)configCurrentViews {
     self.navigationItem.title = [NSString stringWithFormat:@"%ld/%ld", _currentPage, _curImagesDataSource.count];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -47,8 +55,8 @@
     //init_NavDeleteBtn
     _navDeleteBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _navDeleteBtn.frame = CGRectMake(0, 0, 25, 25);
-    [_navDeleteBtn setBackgroundImage:[UIImage imageNamed:@"delete_BigImage_normal"] forState:UIControlStateNormal];
-    [_navDeleteBtn setBackgroundImage:[UIImage imageNamed:@"delete_BigImage_normal"] forState:UIControlStateSelected];
+    [_navDeleteBtn setBackgroundImage:[UIImage imageNamed:@"express_delete_icon"] forState:UIControlStateNormal];
+    [_navDeleteBtn setBackgroundImage:[UIImage imageNamed:@"express_delete_icon"] forState:UIControlStateSelected];
     [_navDeleteBtn addTarget:self action:@selector(navRightBtn_Click:) forControlEvents:UIControlEventTouchUpInside];
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:_navDeleteBtn];
     
@@ -72,14 +80,12 @@
     _curCollectionView.delegate = self;
     _curCollectionView.pagingEnabled = YES;
     [self.view addSubview:_curCollectionView];
-    
-    [_curCollectionView setContentOffset:CGPointMake(([UIScreen mainScreen].bounds.size.width)*(_currentIndex+0.1), 0) animated:NO];
 }
-
-
-
-
-//删除当前页图片-按钮
+    
+    
+    
+    
+    //删除当前页图片-按钮
 - (void)navRightBtn_Click:(UIButton *)sender {
     if (_curImagesDataSource.count == 1) {
         [_curImagesDataSource removeAllObjects];
@@ -93,9 +99,11 @@
     
     
     UIImage *curImage = _curImagesDataSource[_currentPage - 1];
-    [_curImagesDataSource enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj,
-                                                       NSUInteger idx,
-                                                       BOOL * _Nonnull stop) {
+    __weak typeof(_curImagesDataSource) __weakImageSource = _curImagesDataSource;
+    [__weakImageSource enumerateObjectsUsingBlock:^(UIImage * _Nonnull obj,
+                                                    NSUInteger idx,
+                                                    BOOL * _Nonnull stop) {
+        
         if ([curImage isEqual:obj]) {
             *stop = YES;
             if (*stop == YES) {
@@ -107,11 +115,11 @@
     [self scrollViewDidScroll:_curCollectionView];
     [_curCollectionView reloadData];
 }
-
-
-
-
-
+    
+    
+    
+    
+    
 - (void)btnBack_Click {
     if (self.compeletionDeleteBlock) {
         self.compeletionDeleteBlock(_curImagesDataSource);
@@ -119,38 +127,39 @@
     [self.navigationController popViewControllerAnimated:YES];
     [self.navigationController dismissViewControllerAnimated:YES completion:^{}];
 }
-
-
-
+    
+    
+    
 # pragma mark --UICollectionViewDataSource--
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
-
-
+    
+    
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return _curImagesDataSource.count;
 }
-
-
-
+    
+    
+    
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     KBPhotoDeleteImgvCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"KBPhotoDeleteImgvCollectionCell" forIndexPath:indexPath];
     cell.image = _curImagesDataSource[indexPath.row];
     
+    __weak typeof(self) __weakSelf = self;
     cell.singleTapCurImageCallBack = ^{
-        if (self.navigationController.navigationBar.isHidden) {
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
+        if (__weakSelf.navigationController.navigationBar.isHidden) {
+            [__weakSelf.navigationController setNavigationBarHidden:NO animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:NO withAnimation:UIStatusBarAnimationSlide];
         } else {
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            [__weakSelf.navigationController setNavigationBarHidden:YES animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:YES withAnimation:UIStatusBarAnimationSlide];
         }
     };
     return cell;
 }
-
-
+    
+    
 # pragma mark --UICollectionViewDelegate--
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     if (scrollView == (UIScrollView *)_curCollectionView) {
@@ -161,23 +170,27 @@
         self.navigationItem.title = [NSString stringWithFormat:@"%ld/%ld",_currentPage,_curImagesDataSource.count];
     }
 }
-
-
+    
+    
 - (void)setCurrentSelectedImgeArr:(NSMutableArray<UIImage *> *)currentSelectedImgeArr {
     _curImagesDataSource = currentSelectedImgeArr;
 }
-
-
+    
+    
 - (void)setCurrentIndex:(NSInteger)currentIndex {
     _currentIndex = currentIndex;
     _currentPage = currentIndex + 1;
 }
-
-
-
+    
+    
+- (void)dealloc {
+    NSLog(@"KBPhotoBrowserDeleteController---dealloc");
+}
+    
+    
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
-
-
+    
+    
 @end
