@@ -32,10 +32,10 @@
     return self;
 }
     
-    
-    
+
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     [_curCollectionView setContentOffset:CGPointMake(self.currentIndex*(kWidth+kItemMargin), 0)];
 }
     
