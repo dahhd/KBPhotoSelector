@@ -1,6 +1,6 @@
 <br/>
 
-![shields.io](https://img.shields.io/teamcity/codebetter/bt428.svg)  ![Mozilla Add-on](https://img.shields.io/amo/d/dustman.svg?style=flat-square)  ![Yii2](https://img.shields.io/badge/Powered_by-Photos_Framework-green.svg?style=flat)  ![Packagist](https://img.shields.io/packagist/v/symfony/symfony.svg?style=flat-square)  ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)
+![shields.io](https://img.shields.io/teamcity/codebetter/bt428.svg)  ![Mozilla Add-on](https://img.shields.io/amo/d/dustman.svg?style=flat-square)  ![Yii2](https://img.shields.io/badge/Powered_by-Photos_Framework-green.svg?style=flat)  ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg?style=flat-square)
 
 
 ## KBPhotoSelector</br>
@@ -27,7 +27,8 @@ KBPhotoSelector是一个iOS系统的照片选择、浏览、删除管理器，�
 
 <br/>
 #### 示例具体用法：
-``` Swift
+
+``` 
 
 #import <KBPhotoSelector/KBPhotoSelector.h>
 #import <KBPhotoSelector/KBBasePopView1.h>  //这个是弹起底部选择框的customView
@@ -51,7 +52,8 @@ KBPhotoSelector是一个iOS系统的照片选择、浏览、删除管理器，�
 
 ```
 
-```Swift
+
+```
 
 //框架中，我其实还提供了选择完成后，在你所呈现的浏览页面上，点击每个itme，进行浏览、删除等操作
 //具体的类是：KBPhotoBrowserDeleteController
