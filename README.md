@@ -23,9 +23,8 @@ KBPhotoSelector是一个iOS系统的照片选择、浏览、删除管理器，�
 **两种安装方式(推荐使用pods)：**
 - 1、podfile文件： pod 'KBPhotoSelector'
 - 2、github下载后解压，拖入项目合适位置
-
-
 <br/>
+
 #### 示例具体用法：
 
 ``` 
